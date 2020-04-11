@@ -1,0 +1,83 @@
+ping x.x.x.x
+    Iinterval default interval 1s, optionally 1-30s
+    Ttimeout default 30min, 1-60min
+    ping 192.9.201.1 I2 T10
+
+1) ping real network locations
+2) different values mod to 0
+
+bytes = [0b0011, 0b1101, garbage, 0b1000, ...]
+bytes = [0b0011, 0b1101, 0b0011, 0b1000, ...]
+
+messages = [
+    -- init messages --
+    -- same sequence to each device, slow, in order of devices --
+    0000 \ byte means an identifier
+    1101 /
+    0110 \ value for that identifier
+    0011 /
+    0000 \ byte means an identifier
+    1101 /
+    garbage ???
+    0011 /
+    0000
+    0000
+    0000
+    0000
+]
+
+lookup table:
+    0000 | reserved for start new cycle
+    0001 | float of max volts - next 4 bytes = 8 nibbles is IEEE float
+    0010 | 
+    0011 | 
+
+make sure that we filter out defaults and that defaults don't ruin our scheme
+
+for each minute:
+    was any device contacted?
+    which device was contacted?
+    use that lookup table
+    check mode interval between pings
+    append nibble to message stream
+
+device1
+    divisible by 7? -> 0000
+    divisible by 5? -> 0001
+    divisible by 4? -> 0010
+    divisible by 3? -> 0011
+
+device2
+    divisible by 7? -> 0100
+    divisible by 5? -> 0101
+    divisible by 4? -> 0110
+    divisible by 3? -> 0111
+
+device3
+    divisible by 7? -> 1000
+    divisible by 5? -> 1001
+    divisible by 4? -> 1010
+    divisible by 3? -> 1011
+
+device4
+    divisible by 7? -> 1100
+    divisible by 5? -> 1101
+    divisible by 4? -> 1110
+    divisible by 3? -> 1111
+
+we should figure out similar table/schemes for 1 device, 2 devices, N devices
+
+number_of_bits_per_minute =
+log_2(divisible_stuff) + log_2(device_count)
+log_2(divisible_stuff*device_count)
+
+what happens in a minute where a legit user used pings?
+    do we throw out the values? (do not append to stream)
+    can the relay retransmit a message?
+        small number of values -> transmit on a loop
+
+---
+
+Notes from meeting with Sneha Kasera on 9 April at 2:40
+
+compare us versus "normal load" and show there is not a significant difference
