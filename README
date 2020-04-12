@@ -3,6 +3,8 @@ Covert Data Exfiltration Using ICMP Ping Messages
 CS6490 Network Security course project
 Spring 2020
 
+sniffer is using Python 3.7.5
+
 Jonathon Brugman
 Russell Kennington
 Daniel Merrell
