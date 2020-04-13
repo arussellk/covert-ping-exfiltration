@@ -10,6 +10,7 @@ def load_icmp_packets(pcap_path: str) -> List[Packet]:
             display_filter='icmp',
             only_summaries=True)
 
-    cap.load_packets() # Eagerly load all packets so that len works.
+    # Eagerly load all packets so that len(...) and enumeration work.
+    cap.load_packets()
 
     return [Packet.from_PacketSummary(ps) for ps in cap]

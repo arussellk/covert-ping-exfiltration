@@ -5,6 +5,9 @@ from pyshark.packet.packet_summary import PacketSummary
 
 class Packet:
     def __init__(self, src: str, dest: str, time: int):
+        """
+        time is in seconds
+        """
         self.src = src
         self.dest = dest
         self.time = time
