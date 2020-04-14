@@ -17,6 +17,11 @@ class Packet:
         time = round(float(ps.time))
         return Packet(ps.source, ps.destination, time)
 
+    def __eq__(self, other):
+        return (self.src == other.src and
+                self.dest == other.dest and
+                self.time == other.time)
+
     def __str__(self):
         return f'Packet(src={self.src},dest={self.dest},time={self.time})'
 
