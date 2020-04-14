@@ -74,3 +74,33 @@ class MainTest(unittest.TestCase):
                    'ip2': { 5: 10, 6: 8, 7: 8 }}
 
         self.assertEqual(ext.extract_addr_mode(minute), ('ip1',2))
+    
+    def test_get_modes(self):
+        pkts = [ 
+            Packet('ip1', 'ip2', 0),
+            Packet('ip2', 'ip1', 1),
+            Packet('ip1', 'ip2', 2),
+            Packet('ip1', 'ip2', 4),
+            Packet('ip1', 'ip2', 6),
+
+            Packet('ip1', 'ip3', 60),
+            Packet('ip1', 'ip3', 63),
+            Packet('ip1', 'ip2', 64),
+            Packet('ip1', 'ip3', 66),
+            Packet('ip1', 'ip3', 69),
+
+            Packet('ip1', 'ip4', 120),
+            Packet('ip1', 'ip2', 122),
+            Packet('ip1', 'ip4', 124),
+            Packet('ip1', 'ip4', 128),
+            Packet('ip1', 'ip4', 132),
+            Packet('ip1', 'ip3', 133),
+
+            Packet('ip1', 'ip3', 180),
+            Packet('ip1', 'ip3', 183),
+            Packet('ip1', 'ip3', 184),
+        ]
+
+        self.assertEqual(ext.get_modes(pkts, 'ip1'), [('ip2', 2), ('ip3', 3), ('ip4', 4), None])
+
+            

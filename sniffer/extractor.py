@@ -3,7 +3,19 @@ from collections import defaultdict
 
 from packet import Packet
 
-def filter_pkts(pkts: List[Packet], compromised_src: str):
+def get_modes(pkts: List[Packet], compromised_src: str) -> List[Optional[Tuple[str,int]]]:
+    filtered_pkts = filter_pkts(pkts, compromised_src)
+    minutes = group_by_minute(filtered_pkts)
+
+    for m in minutes.keys():
+        minutes[m] = group_by_addr(minutes[m])
+        for addr in minutes[m].keys():
+            minutes[m][addr] = count_by_interval(minutes[m][addr])
+        minutes[m] = extract_addr_mode(minutes[m])
+
+    return list(minutes.values())
+
+def filter_pkts(pkts: List[Packet], compromised_src: str) -> List[Packet]:
     return list(filter(lambda x: x.src == compromised_src, pkts))
 
 def group_by_minute(pkts: List[Packet]) -> Dict[int,List[Packet]]:
