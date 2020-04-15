@@ -102,5 +102,3 @@ class MainTest(unittest.TestCase):
         ]
 
         self.assertEqual(ext.get_modes(pkts, 'ip1'), [('ip2', 2), ('ip3', 3), ('ip4', 4), None])
-
-            
