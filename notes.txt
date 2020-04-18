@@ -81,3 +81,22 @@ what happens in a minute where a legit user used pings?
 Notes from meeting with Sneha Kasera on 9 April at 2:40
 
 compare us versus "normal load" and show there is not a significant difference
+
+
+Jon's notes
+
+First bit of ID 0 if float (4 bytes), 1 if string.  
+If string, next nib is length of string in bytes (so double in nibs)
+
+8 different values we can grab (commented commands for demo)
+50P1P='000' # will come as float
+50P2P='001'
+50P3P='010'
+51AP='011'
+51BP='100'
+51CP='101'
+PHROT='110' # will come as string (3 bytes)
+BRCLO='111' # will come as string (5 bytes)
+
+Grand total of 29 nibs, which is half an hour of transmission
+
