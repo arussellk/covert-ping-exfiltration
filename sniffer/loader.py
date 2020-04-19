@@ -13,4 +13,7 @@ def load_icmp_packets(pcap_path: str) -> List[Packet]:
     # Eagerly load all packets so that len(...) and enumeration work.
     cap.load_packets()
 
-    return [Packet.from_PacketSummary(ps) for ps in cap]
+    # Assume that the first ICMP packet is time 0.
+    offset = float(cap[0].time)
+
+    return [Packet.from_PacketSummary(ps, time_offset=offset) for ps in cap]

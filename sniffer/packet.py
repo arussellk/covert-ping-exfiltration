@@ -13,8 +13,8 @@ class Packet:
         self.time = time
 
     @staticmethod
-    def from_PacketSummary(ps: PacketSummary) -> Packet:
-        time = round(float(ps.time))
+    def from_PacketSummary(ps: PacketSummary, time_offset: float) -> Packet:
+        time = round(float(ps.time)-time_offset)
         return Packet(ps.source, ps.destination, time)
 
     def __eq__(self, other):
