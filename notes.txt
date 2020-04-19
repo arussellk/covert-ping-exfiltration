@@ -85,8 +85,9 @@ compare us versus "normal load" and show there is not a significant difference
 
 Jon's notes
 
-First bit of ID 0 if float (4 bytes), 1 if string.  
+First bit of ID nib is 0 if float (4 bytes), 1 if string.  
 If string, next nib is length of string in bytes (so double in nibs)
+A float is always represented by 4 bytes (8 nibs)
 
 8 different values we can grab (commented commands for demo)
 50P1P='000' # will come as float
