@@ -85,9 +85,12 @@ compare us versus "normal load" and show there is not a significant difference
 
 Jon's notes
 
-First bit of ID nib is 0 if float (4 bytes), 1 if string.  
-If string, next nib is length of string in bytes (so double in nibs)
-A float is always represented by 4 bytes (8 nibs)
+The script currently picks 3 of the 8 values below to retrieve from the Relay settings.
+It will then detect if this value is a string or a float and encode this value into either an IEEE float in bytes, or encode into ASCII.
+The first nib will be an ID nib for the type of data that is about to be transmitted, followed by the actual data.
+First bit of ID nib is 0 if float (4 bytes), 1 if string. The next three bits index into the dictionary below.
+If the value to be conveyed is a string, there will be an additional ID nib whici is the length of string in bytes (so double in nibs)
+A float is always represented by 4 bytes (8 nibs) using the struct.pack function in python (can be reversed in sniffer script with struct.unpack)
 
 8 different values we can grab (commented commands for demo)
 50P1P='000' # will come as float
