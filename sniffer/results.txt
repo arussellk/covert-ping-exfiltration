@@ -1,0 +1,18 @@
+russell sniffer % make                                                                                                         (master)
+python3 main.py
+Loaded 926 ICMP packets.
+Drop rate: 0
+    Average loss: 0.0 of 29 nibbles
+    Counter({0: 100})
+Drop rate: 0.02
+    Average loss: 0.0 of 29 nibbles
+    Counter({0: 100})
+Drop rate: 0.05
+    Average loss: 0.04 of 29 nibbles
+    Counter({0: 96, 1: 4})
+Drop rate: 0.1
+    Average loss: 0.19 of 29 nibbles
+    Counter({0: 83, 1: 15, 2: 2})
+Drop rate: 0.2
+    Average loss: 1.06 of 29 nibbles
+    Counter({0: 36, 1: 35, 2: 18, 3: 9, 4: 2})
