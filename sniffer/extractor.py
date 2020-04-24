@@ -4,6 +4,13 @@ from collections import defaultdict
 from packet import Packet
 
 def get_modes(pkts: List[Packet], compromised_src: str) -> List[Optional[Tuple[str,int]]]:
+    """
+    Process a long sequence of pkts (i.e., the entire transmission)
+    to produce a list of the most-likely address/frequency pairs
+    that were transmitted on the covert channel.
+
+    [pkt1, pkt2, pkt3, ...] -> [(ip1,3), None, (ip4,5), ...]
+    """
     filtered_pkts = filter_pkts(pkts, compromised_src)
     minutes = group_by_minute(filtered_pkts)
 
@@ -16,6 +23,7 @@ def get_modes(pkts: List[Packet], compromised_src: str) -> List[Optional[Tuple[s
     return list(minutes.values())
 
 def filter_pkts(pkts: List[Packet], compromised_src: str) -> List[Packet]:
+    """Filter pkts to those originating from compromised_src."""
     return list(filter(lambda x: x.src == compromised_src, pkts))
 
 def group_by_minute(pkts: List[Packet]) -> Dict[int,List[Packet]]:

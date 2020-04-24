@@ -11,6 +11,10 @@ def modes_to_nibbles(
     return [mode_to_nibble(m) for m in modes]
 
 def mode_to_nibble(mode: Optional[Tuple[str,int]]) -> Optional[bytes]:
+    # Lookup tables should be constructed based on your particular network.
+    # Addresses should be legitimate addresses in your network.
+    # The frequencies should be coprime.
+    # The frequencies should fit within your chosen time slice.
     lookup = defaultdict(lambda: None, {
         ('192.168.1.3',  3): b'\x00',
         ('192.168.1.3',  4): b'\x01',

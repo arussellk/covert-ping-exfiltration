@@ -5,14 +5,14 @@ from loader import load_icmp_packets
 from extractor import get_modes
 from lookup import modes_to_nibbles
 
-num_trials = 100
-
 def main():
     pkts = load_icmp_packets('../pcap_samples/full_sequence.pcap')
     print(f'Loaded {len(pkts)} ICMP packets.')
 
+    # Make a known-correct nibble sequence for later comparison.
     correct_nibbles = modes_to_nibbles(get_modes(pkts, '192.168.1.2'))
 
+    num_trials = 100
     for drop_rate in [0, 0.02, 0.05, 0.1, 0.2]:
 
         losses = []
@@ -21,12 +21,8 @@ def main():
 
             modes: List[Optional[Tuple[str,int]]]
             modes = get_modes(remaining_pkts, '192.168.1.2')
-            #print(f'Extracted {len(modes)} modes.')
-            #print(modes)
 
             nibbles = modes_to_nibbles(modes)
-            #print(f'Mapped to nibbles.')
-            #print(nibbles)
 
             losses.append(nibbles.count(None))
 
@@ -42,7 +38,7 @@ def main():
 def drop(lst, drop_rate):
     """
     Simulates a poor network connection by randomly dropping
-    a number of packets from lst.
+    a percent of packets from lst.
 
     0 <= drop_rate <= 1
     """
