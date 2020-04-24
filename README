@@ -13,16 +13,16 @@ Covert Data Exfiltration Using ICMP Ping Messages
 
 Overview:
 -------------------------------------------------
+The code is organized into the following 2 components:
 
-A quick summary here.
 
 Telnet pinger:
 -------------------------------------------------
 
 Sniffer:
 -------------------------------------------------
-
-
+The sniffer tool takes a network traffic capture file (located in `./pcap_samples/`) and extracts (address,interval) tuples for each time interval (set at 1 minute).
+Tuples are used as an index into a lookup table to extract a bit sequence.
 
 Located in `./sniffer/`
 
@@ -32,4 +32,21 @@ $ make test
 $ make run
 ```
 
+Files: 
+  extractor.py
+    Module containing helper functions for extracting (address,interval) tuples from a stream of packets
+    
+  loader.py
+    Loads a .pcat file into an array of packets
+    
+  lookup.py
+    Contains the lookup table for (address,interval) tuples
+    
+  packet.py
+    Defines the format of a packet
+    
+  test_extractor.py
+    Unit tests for the extractor
+    
+  
 sniffer is using Python 3.7.5
