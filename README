@@ -33,6 +33,7 @@ It makes use of several extra methods and dictionaries stored in extra_funcs.py
 Sniffer:
 -------------------------------------------------
 The sniffer tool takes a network traffic capture file (located in `./pcap_samples/`) and extracts (address,interval) tuples for each time interval (set at 1 minute).
+
 Tuples are used as an index into a lookup table to extract a bit sequence.
 
 Located in `./sniffer/`
