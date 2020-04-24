@@ -1,10 +1,35 @@
+-------------------------------------------------
 Covert Data Exfiltration Using ICMP Ping Messages
+-------------------------------------------------
 
-CS6490 Network Security course project
-Spring 2020
+      CS6490 Network Security course project
+                   Spring 2020
+
+                 Jonathon Brugman
+                Russell Kennington
+                  Daniel Merrell
+
+-------------------------------------------------
+
+Overview:
+-------------------------------------------------
+
+A quick summary here.
+
+Telnet pinger:
+-------------------------------------------------
+
+Sniffer:
+-------------------------------------------------
+
+
+
+Located in `./sniffer/`
+
+```
+$ cd ./sniffer/
+$ make test
+$ make run
+```
 
 sniffer is using Python 3.7.5
-
-Jonathon Brugman
-Russell Kennington
-Daniel Merrell
