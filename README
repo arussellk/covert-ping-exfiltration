@@ -19,6 +19,17 @@ A quick summary here.
 Telnet pinger:
 -------------------------------------------------
 
+The telnet pinger is run on a compromised device to run commands on the PLC.
+The script retrieves and parses relevant setting information into nibs and then runs ping commands to transmit that data to the sniffer.
+
+Located in ./telnet-pinger/
+
+It includes two files ping_access.py and extra_funcs.py
+
+$python(3) ping_access.py
+
+It makes use of several extra methods and dictionaries stored in extra_funcs.py
+
 Sniffer:
 -------------------------------------------------
 
