@@ -26,7 +26,7 @@ Located in ./telnet-pinger/
 
 It includes two files ping_access.py and extra_funcs.py
 
-$python(3) ping_access.py
+$python3 ping_access.py
 
 It makes use of several extra methods and dictionaries stored in extra_funcs.py
 
