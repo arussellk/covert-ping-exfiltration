@@ -1,6 +1,7 @@
 import struct
 
 
+#python method to convert message to bytes and define if string or float
 def packup(to_pack):
     try:
         to_pack=float(to_pack)
@@ -11,8 +12,11 @@ def packup(to_pack):
         isString='1'
     return to_pack, isString
 
+
+#method to convert bytes into 4  bit nibs
 def convert_bytes_nibs(bytes):
     bit_patterns=[]
+    #ensure that each byte is padded to 8 bits (python default drops leading 0's)
     for byte in bytes:
         my_bin=bin(byte)
         num_arr=list(my_bin[2:])
@@ -21,6 +25,7 @@ def convert_bytes_nibs(bytes):
             for i in range(pad0):
                 num_arr.insert(0, "0")
         bit_patterns.append(num_arr)
+    #split each byte into two nibs
     for i in range(len(bytes)):
         byte=bit_patterns.pop(0)
         to_append=""
@@ -33,6 +38,8 @@ def convert_bytes_nibs(bytes):
         bit_patterns.append(to_append)
     return bit_patterns
 
+
+#dictionary for storing location frequency tuple into bit pattern 
 def get_ping_loc():
     ping_loc={}
     ping_loc['0000']=('192.168.1.3', '3')
@@ -53,6 +60,7 @@ def get_ping_loc():
     ping_loc['1111']=('192.168.1.10','7')
     return ping_loc
 
+#dictionary for storing command IDs to bit pattern
 def get_command_ID():
     commandID={}
     commandID['50P1P']='000'
@@ -65,6 +73,7 @@ def get_command_ID():
     commandID['BRCLO']='111'
     return commandID
 
+#method to turn int into 4 bit nib.
 def get_nib(num):
     my_bin=bin(num)
     num_arr=my_bin[2:]
