@@ -49,7 +49,7 @@ Files:
     Module containing helper functions for extracting (address,interval) tuples from a stream of packets
     
   loader.py
-    Loads a .pcat file into an array of packets
+    Loads a .pcap file into an array of packets
     
   lookup.py
     Contains the lookup table for (address,interval) tuples
